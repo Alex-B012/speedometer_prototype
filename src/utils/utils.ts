@@ -22,15 +22,11 @@ function setNextValue(value: number) {
 
 function setInput3(value: number) {
    return {
-      next_2: setNextValue(value + 2),
       next: setNextValue(value + 1),
       current: value,
       prev: setNextValue(value - 1),
-      prev_2: setNextValue(value - 2)
    }
 }
-
-
 
 export function setInputData(value: number, height: number) {
    if (value > 999 || value < 0) {

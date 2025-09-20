@@ -66,11 +66,9 @@ function Speedometer({ data }: SpeedometerProps) {
          <div className="speedometer__placeholder">{input.input2}</div>
          <div className="speedometer__placeholder">
             <div className="speedometer__number-container" style={{ marginTop: `${input.position}px` }}>
-               <div className="speedometer__number">{input.input3.next_2}</div>
                <div className="speedometer__number">{input.input3.next}</div>
                <div className="speedometer__number">{input.input3.current}</div>
                <div className="speedometer__number">{input.input3.prev}</div>
-               <div className="speedometer__number">{input.input3.prev_2}</div>
             </div>
          </div>
       </div>
