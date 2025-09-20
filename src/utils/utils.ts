@@ -8,7 +8,6 @@ function calcPosition(value: number, height: number) {
 }
 
 function setNextValue(value: number) {
-   console.log(" value:", value);
    let result;
    if (value > 9) {
       result = value - 10;
@@ -17,7 +16,7 @@ function setNextValue(value: number) {
    } else {
       result = value;
    }
-   console.log(" result:", result);
+
    return result;
 }
 

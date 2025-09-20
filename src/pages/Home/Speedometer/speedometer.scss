@@ -8,6 +8,7 @@
   border: $speedometer-border;
   padding: 45px 25px;
   box-shadow: $box-shadow;
+  scale: 0.9;
   &__placeholder {
     width: 75px;
     height: 100px;
@@ -35,5 +36,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media screen and (min-width: 380px) {
+  .speedometer {
+    scale: 1;
   }
 }
