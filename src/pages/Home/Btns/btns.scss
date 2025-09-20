@@ -1,0 +1,27 @@
+@import "../../../styles/variables";
+
+.btns {
+  width: 300px;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 70px 0 0;
+  &__btn {
+    height: 70px;
+    width: 90px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: rgb(12, 73, 73);
+    transition: all 2s ease;
+    &:hover {
+      cursor: pointer;
+      box-shadow: $box-shadow;
+      background-color: rgb(35, 112, 112);
+      transition: all 0.5s ease;
+    }
+  }
+}

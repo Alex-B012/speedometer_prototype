@@ -1,0 +1,39 @@
+@import "../../../styles/_variables.scss";
+
+.speedometer {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: $speedometer-border;
+  padding: 45px 25px;
+  box-shadow: $box-shadow;
+  &__placeholder {
+    width: 75px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $placeholder-font-size;
+    font-weight: 900;
+    border: $placeholder-border;
+    margin: 5px;
+    padding-bottom: 10px;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+  }
+  &__number-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+  }
+  &__number {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
