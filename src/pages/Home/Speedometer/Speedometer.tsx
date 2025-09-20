@@ -2,10 +2,6 @@ import { useEffect, useState } from "react";
 import "./speedometer.scss"
 import { setInputData } from "../../../utils/utils";
 
-
-
-
-
 interface SpeedometerProps {
    data: {
       speed: number;
@@ -34,6 +30,7 @@ function Speedometer({ data }: SpeedometerProps) {
             const nextIndex = (prevIndex + 1) % array.length;
             setInput(setInputData(array[nextIndex], height));
             data.setSpeed(array[nextIndex]);
+            console.log(index);
             return nextIndex;
          });
       };
@@ -43,7 +40,7 @@ function Speedometer({ data }: SpeedometerProps) {
       return () => {
          clearInterval(intervalId);
       };
-   }, [height])
+   }, [height, index, data])
 
 
 
