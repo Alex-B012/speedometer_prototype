@@ -53,10 +53,28 @@ export function setInputData(value: number, height: number) {
    }
 }
 
-export function createNumber(value: number, action: number, delta = 0.05, min = 100.00, max = 109.99): {
-   newNumber: number,
-   newAction: number
-} {
+interface ConvertInput {
+   input1: number;
+   input2: number;
+   input3: number;
+   position: number;
+}
+
+export function prepareObjToConvert(input1: number, input2: number, input3: number, position: number): ConvertInput {
+   return {
+      input1: input1,
+      input2: input2,
+      input3: input3,
+      position: position,
+   };
+}
+
+interface NumberResult {
+   newNumber: number;
+   newAction: number;
+}
+
+export function createNumber(value: number, action: number, delta = 0.05, min = 100.00, max = 109.99): NumberResult {
    let result = 0;
    if (action > 0 && value + delta < max) {
       result = Math.round((value + delta) * 100) / 100;
@@ -72,11 +90,4 @@ export function createNumber(value: number, action: number, delta = 0.05, min = 
    return { newNumber: result, newAction: action };
 }
 
-export function prepareObjToConvert(input1: number, input2: number, input3: number, position: number) {
-   return {
-      input1: input1,
-      input2: input2,
-      input3: input3,
-      position: position,
-   };
-}
+
