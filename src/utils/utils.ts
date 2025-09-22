@@ -20,7 +20,7 @@ function setNextValue(value: number) {
    return result;
 }
 
-export function setInput3(value: number) {
+function setInput3(value: number) {
    return {
       next: setNextValue(value + 1),
       current: value,
@@ -51,4 +51,32 @@ export function setInputData(value: number, height: number) {
       input3: setInput3(parseInt(temp.charAt(2))),
       position: calcPosition(positionValue, height)
    }
+}
+
+export function createNumber(value: number, action: number, delta = 0.05, min = 100.00, max = 109.99): {
+   newNumber: number,
+   newAction: number
+} {
+   let result = 0;
+   if (action > 0 && value + delta < max) {
+      result = Math.round((value + delta) * 100) / 100;
+   } else if (action > 0 && value + delta >= max) {
+      action = -1;
+      result = Math.round((value - delta) * 100) / 100;
+   } else if (action < 0 && value - delta > min) {
+      result = Math.round((value - delta) * 100) / 100;
+   } else if (action < 0 && value - delta <= min) {
+      action = 1;
+      result = Math.round((value + delta) * 100) / 100;
+   }
+   return { newNumber: result, newAction: action };
+}
+
+export function prepareObjToConvert(input1: number, input2: number, input3: number, position: number) {
+   return {
+      input1: input1,
+      input2: input2,
+      input3: input3,
+      position: position,
+   };
 }

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "./speedometer.scss";
-import { convertObjToNumber, setInputData } from "../../../utils/utils";
+import { convertObjToNumber, createNumber, prepareObjToConvert, setInputData } from "../../../utils/utils";
 
 const HEIGHT = 70;
+const MIN = 100.00;
+const MAX = 109.99;
 
 interface SpeedometerProps {
    data: {
@@ -20,29 +22,19 @@ function Speedometer({ data }: SpeedometerProps) {
    useEffect(() => {
       const updateInput = () => {
          const delta = 0.05;
-         let newNumber = -1;
+         let newNumber = { newNumber: -1, newAction: actionRef.current };
 
          if (input.position === undefined) throw new Error("input.position is required");
-         let number = convertObjToNumber({
-            input1: input.input1,
-            input2: input.input2,
-            input3: input.input3.current,
-            position: input.position,
-         }, HEIGHT)
+         let number = convertObjToNumber(
+            prepareObjToConvert(input.input1, input.input2, input.input3.current, input.position),
+            HEIGHT
+         )
 
-         if (actionRef.current > 0 && number + delta < 109.99) {
-            newNumber = Math.round((number + delta) * 100) / 100;
-         } else if (actionRef.current > 0 && number + delta >= 109.99) {
-            actionRef.current = -1;
-            newNumber = Math.round((number - delta) * 100) / 100;
-         } else if (actionRef.current < 0 && number - delta > 100.00) {
-            newNumber = Math.round((number - delta) * 100) / 100;
-         } else if (actionRef.current < 0 && number - delta <= 100.00) {
-            actionRef.current = 1;
-            newNumber = Math.round((number + delta) * 100) / 100;
-         }
+         if (number === undefined) throw new Error("number variable is undefined");
+         newNumber = createNumber(number, actionRef.current, delta, MIN, MAX);
+         actionRef.current = newNumber.newAction;
 
-         setInput(setInputData(newNumber, HEIGHT));
+         setInput(setInputData(newNumber.newNumber, HEIGHT));
       };
 
       const intervalId = setInterval(updateInput, displaySpeedValue);
@@ -55,12 +47,10 @@ function Speedometer({ data }: SpeedometerProps) {
    useEffect(() => {
       if (input.position === undefined) throw new Error("input.position is required");
 
-      data.setSpeed(convertObjToNumber({
-         input1: input.input1,
-         input2: input.input2,
-         input3: input.input3.current,
-         position: input.position,
-      }, HEIGHT));
+      data.setSpeed(convertObjToNumber(
+         prepareObjToConvert(input.input1, input.input2, input.input3.current, input.position),
+         HEIGHT
+      ));
    }, [data, input]);
 
    useEffect(() => {
