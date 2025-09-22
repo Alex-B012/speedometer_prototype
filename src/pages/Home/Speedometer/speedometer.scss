@@ -21,8 +21,7 @@
     overflow: hidden;
   }
   &__number-container {
-    @include display-flex-center;
-    flex-direction: column;
+    @include display-flex-center(column);
     margin-top: 70px;
   }
   &__number {

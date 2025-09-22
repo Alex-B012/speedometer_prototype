@@ -1,11 +1,11 @@
+import { useState } from "react";
 import "./home.scss"
 import Speedometer from "./Speedometer/Speedometer";
 import Btns from "./Btns/Btns";
 import Speed from "./Speed/Speed";
-import { useState } from "react";
 
 function Home() {
-   const [speed, setSpeed] = useState(103.99);
+   const [speed, setSpeed] = useState(101.99);
    const [displaySpeed, setDisplaySpeed] = useState(1);
    return (
       <div className="home">

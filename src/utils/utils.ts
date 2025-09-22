@@ -20,12 +20,21 @@ function setNextValue(value: number) {
    return result;
 }
 
-function setInput3(value: number) {
+export function setInput3(value: number) {
    return {
       next: setNextValue(value + 1),
       current: value,
       prev: setNextValue(value - 1),
    }
+}
+
+export function convertObjToNumber(obj: { input1: number, input2: number, input3: number, position: number }, height: number): number {
+   let result = 0;
+   result += obj.input1 * 100;
+   result += obj.input2 * 10;
+   result += obj.input3;
+   result += parseInt((obj.position * height / 100).toFixed(0)) / 100;
+   return result;
 }
 
 export function setInputData(value: number, height: number) {
